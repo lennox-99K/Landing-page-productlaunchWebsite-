@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOLARA — Artist</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07060a;
+  --surface:#0f0e14;
+  --gold:#d4a847;
+  --gold2:#f0c96a;
+  --purple:#6a3de8;
+  --text:#f0ece8;
+  --muted:#5a5760;
+  --border:#1e1c25;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(7,6,10,0.95),transparent)}
+.logo{font-family:'Cinzel',serif;font-size:1.5rem;font-weight:900;letter-spacing:6px;color:var(--gold)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:0.8rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;cursor:pointer}
+.nav-links a:hover{color:var(--gold)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 60%,rgba(106,61,232,0.25) 0%,transparent 65%),
+             radial-gradient(ellipse at 80% 20%,rgba(212,168,71,0.1) 0%,transparent 50%);
+}
+.hero-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.ring{border-radius:50%;border:1px solid rgba(212,168,71,0.1);position:absolute;animation:rotate 20s linear infinite}
+.ring:nth-child(1){width:600px;height:600px;animation-duration:30s}
+.ring:nth-child(2){width:850px;height:850px;animation-duration:45s;animation-direction:reverse;border-color:rgba(106,61,232,0.08)}
+.ring:nth-child(3){width:1100px;height:1100px;animation-duration:60s;border-color:rgba(212,168,71,0.05)}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{font-size:0.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0.8}
+.hero-name{font-family:'Cinzel',serif;font-size:clamp(64px,12vw,140px);font-weight:900;letter-spacing:8px;line-height:1;background:linear-gradient(135deg,var(--text) 0%,var(--gold2) 50%,var(--text) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}
+.hero-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:1.4rem;font-weight:300;color:rgba(240,236,232,0.55);letter-spacing:2px;margin-bottom:48px}
+.hero-cta-row{display:flex;gap:16px;justify-content:center;margin-bottom:64px}
+.btn-gold{background:var(--gold);color:var(--bg);border:none;padding:14px 36px;font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background 0.2s,transform 0.15s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-outline-g{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:14px 36px;font-family:'Rajdhani',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}
+.btn-outline-g:hover{background:rgba(212,168,71,0.1)}
+
+/* ── SOCIAL BAR ── */
+.social-bar{display:flex;align-items:center;justify-content:center;gap:20px;padding:28px 0 0}
+.social-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-right:8px}
+.social-icon{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border:1px solid rgba(212,168,71,0.2);border-radius:50%;text-decoration:none;color:var(--gold);font-size:1.1rem;transition:all 0.3s;position:relative;overflow:hidden}
+.social-icon::before{content:'';position:absolute;inset:0;background:var(--gold);opacity:0;transition:opacity 0.3s;border-radius:50%}
+.social-icon:hover::before{opacity:0.15}
+.social-icon:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,168,71,0.2)}
+.social-icon svg{position:relative;z-index:1;width:18px;height:18px;fill:var(--gold)}
+
+/* ── MUSIC / RELEASES ── */
+.section{padding:100px 60px}
+.section-eyebrow{font-size:0.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;opacity:0.8}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(32px,5vw,56px);font-weight:600;letter-spacing:2px;margin-bottom:48px}
+.releases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.release-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;position:relative}
+.release-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.release-cover{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden}
+.release-card:nth-child(1) .release-cover{background:linear-gradient(135deg,#1a0830,#3d1460,#6a3de8)}
+.release-card:nth-child(2) .release-cover{background:linear-gradient(135deg,#1a0c08,#3d1c10,#8a3418)}
+.release-card:nth-child(3) .release-cover{background:linear-gradient(135deg,#08141a,#103040,#1a5070)}
+.release-cover-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
+.release-card:hover .release-cover-overlay{opacity:1}
+.play-btn{width:56px;height:56px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.release-info{padding:20px}
+.release-title{font-family:'Cinzel',serif;font-size:1rem;font-weight:600;margin-bottom:4px;letter-spacing:1px}
+.release-year{font-size:0.72rem;color:var(--muted);letter-spacing:1px}
+.release-badge{position:absolute;top:12px;right:12px;background:var(--gold);color:var(--bg);font-size:0.6rem;font-weight:700;letter-spacing:1.5px;padding:4px 10px;text-transform:uppercase}
+
+/* ── TOUR DATES ── */
+.tour-list{display:flex;flex-direction:column;gap:0}
+.tour-item{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:24px;padding:24px 0;border-bottom:1px solid var(--border)}
+.tour-item:first-child{border-top:1px solid var(--border)}
+.tour-date{font-family:'Cinzel',serif;font-size:0.95rem;letter-spacing:1px;color:var(--gold)}
+.tour-venue{font-size:0.95rem;font-weight:500;letter-spacing:0.5px}
+.tour-city{font-size:0.78rem;color:var(--muted);margin-top:2px;letter-spacing:0.5px}
+.tour-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:8px 20px;font-family:'Rajdhani',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.tour-btn:hover{background:var(--gold);color:var(--bg)}
+
+/* ── FOOTER ── */
+footer{background:#040308;padding:60px;border-top:1px solid var(--border)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Cinzel',serif;font-size:2rem;font-weight:900;letter-spacing:6px;color:var(--gold)}
+.footer-social{display:flex;gap:14px}
+.footer-social-link{width:40px;height:40px;border:1px solid rgba(212,168,71,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.25s}
+.footer-social-link:hover{border-color:var(--gold);background:rgba(212,168,71,0.1)}
+.footer-social-link svg{width:16px;height:16px;fill:var(--gold)}
+.footer-copy{font-size:0.72rem;color:var(--muted);letter-spacing:0.5px}
+
+/* Divider line */
+.gold-line{width:80px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:32px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">SOLARA</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#tour">Tour</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-rings">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">New Album Out Now</p>
+    <h1 class="hero-name">SOLARA</h1>
+    <p class="hero-tagline">Where darkness meets divinity</p>
+    <div class="hero-cta-row">
+      <button class="btn-gold">▶ Listen Now</button>
+      <button class="btn-outline-g">Tour Dates</button>
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div class="social-bar">
+      <span class="social-label">Follow</span>
+
+      <!-- Instagram -->
+      <a class="social-icon" href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+
+      <!-- Facebook -->
+      <a class="social-icon" href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+
+      <!-- Twitter / X -->
+      <a class="social-icon" href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter / X">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+
+      <!-- YouTube -->
+      <a class="social-icon" href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+
+      <!-- Spotify -->
+      <a class="social-icon" href="https://www.spotify.com" target="_blank" rel="noopener" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music" class="section">
+  <p class="section-eyebrow">Discography</p>
+  <div class="gold-line"></div>
+  <h2 class="section-title">Latest Releases</h2>
+  <div class="releases-grid">
+    <div class="release-card">
+      <div class="release-badge">New</div>
+      <div class="release-cover">
+        🌑
+        <div class="release-cover-overlay"><div class="play-btn">▶</div></div>
+      </div>
+      <div class="release-info">
+        <div class="release-title">ECLIPSE</div>
+        <div class="release-year">Album · 2025</div>
+      </div>
+    </div>
+    <div class="release-card">
+      <div class="release-cover">
+        🔥
+        <div class="release-cover-overlay"><div class="play-btn">▶</div></div>
+      </div>
+      <div class="release-info">
+        <div class="release-title">INFERNO</div>
+        <div class="release-year">Single · 2024</div>
+      </div>
+    </div>
+    <div class="release-card">
+      <div class="release-cover">
+        🌊
+        <div class="release-cover-overlay"><div class="play-btn">▶</div></div>
+      </div>
+      <div class="release-info">
+        <div class="release-title">TIDAL</div>
+        <div class="release-year">EP · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOUR -->
+<section id="tour" class="section" style="padding-top:0">
+  <p class="section-eyebrow">On The Road</p>
+  <div class="gold-line"></div>
+  <h2 class="section-title">Tour Dates</h2>
+  <div class="tour-list">
+    <div class="tour-item">
+      <div class="tour-date">JUL 12</div>
+      <div><div class="tour-venue">Stadium Merdeka</div><div class="tour-city">Kuala Lumpur, Malaysia</div></div>
+      <button class="tour-btn">Get Tickets</button>
+    </div>
+    <div class="tour-item">
+      <div class="tour-date">JUL 19</div>
+      <div><div class="tour-venue">Singapore Indoor Stadium</div><div class="tour-city">Singapore</div></div>
+      <button class="tour-btn">Get Tickets</button>
+    </div>
+    <div class="tour-item">
+      <div class="tour-date">AUG 02</div>
+      <div><div class="tour-venue">Bangkok Arena</div><div class="tour-city">Bangkok, Thailand</div></div>
+      <button class="tour-btn">Get Tickets</button>
+    </div>
+    <div class="tour-item">
+      <div class="tour-date">AUG 16</div>
+      <div><div class="tour-venue">Jakarta International Expo</div><div class="tour-city">Jakarta, Indonesia</div></div>
+      <button class="tour-btn">Sold Out</button>
+    </div>
+    <div class="tour-item">
+      <div class="tour-date">SEP 06</div>
+      <div><div class="tour-venue">Tokyo Dome</div><div class="tour-city">Tokyo, Japan</div></div>
+      <button class="tour-btn">Get Tickets</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT / SOCIAL FULL -->
+<section id="connect" class="section" style="text-align:center;padding-bottom:0">
+  <p class="section-eyebrow">Stay Connected</p>
+  <div class="gold-line" style="margin:0 auto 32px"></div>
+  <h2 class="section-title" style="margin-bottom:16px">Follow the Journey</h2>
+  <p style="font-family:'Crimson Pro',serif;font-style:italic;font-size:1.1rem;color:var(--muted);margin-bottom:48px">Get behind-the-scenes content, early ticket access, and exclusive drops</p>
+
+  <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap">
+    <!-- Instagram large card -->
+    <a href="https://www.instagram.com" target="_blank" rel="noopener" style="text-decoration:none">
+      <div style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);padding:2px;border-radius:16px;width:180px">
+        <div style="background:var(--surface);border-radius:14px;padding:28px 24px;text-align:center;transition:background 0.2s">
+          <div style="width:52px;height:52px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div style="font-size:0.9rem;font-weight:600;letter-spacing:1px;color:var(--text);margin-bottom:4px">Instagram</div>
+          <div style="font-size:0.7rem;color:var(--muted)">@solaraofficial</div>
+          <div style="margin-top:12px;font-size:0.7rem;color:#833ab4;letter-spacing:1px">2.4M followers</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Facebook large card -->
+    <a href="https://www.facebook.com" target="_blank" rel="noopener" style="text-decoration:none">
+      <div style="background:linear-gradient(135deg,#1877f2,#0d4f9e);padding:2px;border-radius:16px;width:180px">
+        <div style="background:var(--surface);border-radius:14px;padding:28px 24px;text-align:center">
+          <div style="width:52px;height:52px;background:#1877f2;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div style="font-size:0.9rem;font-weight:600;letter-spacing:1px;color:var(--text);margin-bottom:4px">Facebook</div>
+          <div style="font-size:0.7rem;color:var(--muted)">SOLARA Music</div>
+          <div style="margin-top:12px;font-size:0.7rem;color:#1877f2;letter-spacing:1px">890K likes</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Twitter/X large card -->
+    <a href="https://www.twitter.com" target="_blank" rel="noopener" style="text-decoration:none">
+      <div style="background:linear-gradient(135deg,#000,#333);padding:2px;border-radius:16px;width:180px">
+        <div style="background:var(--surface);border-radius:14px;padding:28px 24px;text-align:center">
+          <div style="width:52px;height:52px;background:#000;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+            <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div style="font-size:0.9rem;font-weight:600;letter-spacing:1px;color:var(--text);margin-bottom:4px">Twitter / X</div>
+          <div style="font-size:0.7rem;color:var(--muted)">@SOLARA</div>
+          <div style="margin-top:12px;font-size:0.7rem;color:var(--muted);letter-spacing:1px">1.1M followers</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="margin-top:80px">
+  <div class="footer-inner">
+    <div class="footer-logo">SOLARA</div>
+    <div class="footer-social">
+      <a class="footer-social-link" href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a class="footer-social-link" href="https://www.twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+    </div>
+    <div class="footer-copy">© 2025 SOLARA. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>
